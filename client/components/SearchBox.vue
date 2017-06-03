@@ -3,9 +3,9 @@
 	<div class="field has-addons">
 		<p class="control">
 			<input type="text" :value="value" @input="updateValue" class="input is-medium" placeholder="Search here">
-		</p>	
+		</p>
 		<p class="control">
-			<button class="button is-primary is-medium">Search</button>
+			<button class="button is-primary is-medium" style="padding-left:2rem;padding-right:2rem;"><span class="icon"><i class="fa fa-search"></i></span></button>
 		</p>
 	</div>
 </form>

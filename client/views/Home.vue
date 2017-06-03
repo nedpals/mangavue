@@ -3,8 +3,7 @@
 	<div class="columns">
 		<div class="column is-8 is-offset-2  has-text-centered">
 			<h1 class="title is-1">Manga Reader powered by Vue.</h1>
-			<p class="subtitle is-3">Made by Ned the Great(tm)</p>
-			<search-box-big v-bind:value="searchQuery"></search-box-big>			
+			<search-box-big v-bind:value="searchQuery"></search-box-big>
 		</div>
 	</div>
 	<div class="columns">

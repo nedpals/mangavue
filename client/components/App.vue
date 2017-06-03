@@ -7,13 +7,12 @@
     </keep-alive>
   </div>
 </template>
-
+<style src="../../static/assets/scss/font-awesome.scss" lang="sass"></style>
 <style>
 body {
   margin-bottom: 3rem;
 }
 </style>
-
 <script>
   import Navbar from './Navbar'
   import '../../static/assets/bulma.css'

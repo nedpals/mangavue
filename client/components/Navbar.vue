@@ -27,7 +27,12 @@
 	      <div class="nav-item">
 		      <div class="field">
 		      	<p class="control">
-		      		<a class="button" href="https://twitter.com/npned">@npned</a>
+		      		<a class="button" href="https://twitter.com/npned">
+								<span class="icon is-small">
+						      <i class="fa fa-twitter"></i>
+						    </span>
+								<span>@npned</span>
+							</a>
 		      	</p>
 		      </div>
 	      </div>
