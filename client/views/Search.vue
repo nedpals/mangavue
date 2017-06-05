@@ -34,31 +34,34 @@ import { mapState } from 'vuex'
 export default {
 	watch: {
 		'$route' (to, from) {
-			this.$store.dispatch('LOAD_SEARCH_RESULTS')
+			this.loadResult();
 		}
 	},
-	props: {
-		query: String
-	},
 	mounted() {
-		this.$store.dispatch('LOAD_SEARCH_RESULTS')
+		this.loadResult();
 	},
 	computed: {
 		...mapState({
-			results: state => state.search.results
+			results: state => state.search.results,
+			search: state => state.search
 		}),
 		query() {
 			return this.$route.query.q
 		}
 	},
 	methods: {
+		loadResult() {
+			if (this.results === []) {
+				this.$store.dispatch('LOAD_SEARCH_RESULTS');
+			}
+		},
 		nameify(str) {
 		   str = str.replace(/-/g, " ");
 		   var splitStr = str.toLowerCase().split(' ');
 		   for (var i = 0; i < splitStr.length; i++) {
-		       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+		       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
 		   }
-		   return splitStr.join(' '); 
+		   return splitStr.join(' ');
 		}
 	}
 }

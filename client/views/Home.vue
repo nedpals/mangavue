@@ -9,7 +9,11 @@
 	<div class="columns">
 		<div class="column is-10 is-offset-1 has-text-centered">
 			<ul style="list-style-type:none;">
-				<li style="display: inline; margin-right: 3px;" v-for="genre in genres"><router-link :to="{name: 'genre', params: {genreName: genre.genreId}}"><span style="margin: 4px;" class="tag is-large is-primary">{{ genre.genreId }}</span></router-link></li>
+				<li style="display: inline; margin-right: 3px;" v-for="genre in genres">
+					<router-link :to="{name: 'genre', params: {genreName: genre.genreId}}">
+						<span style="margin: 4px;" class="tag is-large is-primary">{{ genre.genreId }}</span>
+					</router-link>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -25,7 +29,7 @@ export default {
     SearchBoxBig
   },
   mounted() {
-  	if ( genres === [] ) {
+  	if ( this.genres === [] ) {
   		this.$store.dispatch('LOAD_GENRES');
   	}
   },

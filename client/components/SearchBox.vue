@@ -1,11 +1,15 @@
 <template>
 <form method="POST" v-on:submit="onSubmitForm">
 	<div class="field has-addons">
-		<p class="control">
+		<p class="control has-icons-right">
 			<input type="text" :value="value" @input="updateValue" class="input is-medium" placeholder="Search here">
 		</p>
 		<p class="control">
-			<button class="button is-primary is-medium" style="padding-left:2rem;padding-right:2rem;"><span class="icon"><i class="fa fa-search"></i></span></button>
+			<button v:bind-class="{ 'is-loading':isLoading }" class="button is-primary is-medium" style="padding-left:2rem;padding-right:2rem;">
+				<span class="icon">
+					<i class="fa fa-search"></i>
+				</span>
+			</button>
 		</p>
 	</div>
 </form>
@@ -13,7 +17,7 @@
 <script>
 	import { mapState } from 'vuex'
 	export default {
-		props: ['value'],
+		props: ['value', 'isLoading'],
 		methods: {
 			updateValue(e) {
 				this.$store.commit('updateSearchQuery', e.target.value)

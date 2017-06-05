@@ -16,7 +16,7 @@
 		      		<search-box v-bind:value="sQuery"></search-box>
 		      	</template>
 		      	<template v-else>
-		      		<search-box v-bind:value="searchQuery"></search-box>
+		      		<search-box v-bind:isLoading="loading" v-bind:value="searchQuery"></search-box>
 		      	</template>
 	      	</div>
 	    </div>
@@ -57,7 +57,8 @@ export default {
 	computed: {
 		...mapState({
 			searchQuery: state => state.search.query,
-			sQuery: state => state.route.query.q
+			sQuery: state => state.route.query.q,
+			loading: state => state.globals.isLoading
 		})
 	}
 }

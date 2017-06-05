@@ -4,12 +4,12 @@
 		<div class="column is-8 is-offset-2">
 			<nav class="pagination is-centered">
 				<router-link class="pagination-next" :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: params.chapterId, page: nextPage }}">Next</router-link>
-				<div class="pagination-list">Chapter {{ params.chapterId }} / <template v-if="currentChapter.name">{{ currentChapter.name }} /</template> Page {{ params.page }} of {{ currentChapter.pages.length }}</div>	
+				<div class="pagination-list" v-show="currentChapter">Chapter {{ params.chapterId }} / <template v-if="currentChapter.name">{{ currentChapter.name }} /</template> Page {{ params.page }} of {{ currentChapter.pages.length }}</div>
 				<router-link class="pagination-previous" :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: params.chapterId, page: prevPage }}">Previous</router-link>
 			</nav>
 		</div>
 	</div>
-	<div class="columns">
+	<div class="columns" v-show="currentChapter">
 		<div class="column is-two-thirds is-offset-2">
 			<figure class="image">
 				<img v-bind:src="currentPage.url" />
@@ -26,15 +26,11 @@ export default {
 	mounted() {
 		this.$store.dispatch('LOAD_MANGA_CHAPTER')
 	},
-	watch: {
+	/**watch: {
 		'$route' (to, from) {
-			if ( to !== from ) {
-				this.$store.commit('resetReader', [])
-			}
-
 			this.$store.dispatch('LOAD_MANGA_CHAPTER')
 		}
-	},
+	},**/
 	computed: {
 		currentPage() {
 			const pageId = this.$store.state.route.params.page

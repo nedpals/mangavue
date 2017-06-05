@@ -10,6 +10,28 @@ const apiHeaders = {
 
 const apiUrl = "https://doodle-manga-scraper.p.mashape.com/mangareader.net/"
 
+const globalState = {
+  state: {
+    isLoading: false
+  },
+
+  mutations: {
+    setLoadingState(state) {
+      if ( state.isLoading === false ) {
+        state.isLoading = true
+      } else {
+        state.isLoading = false
+      }
+    }
+  },
+
+  actions: {
+    setLoading: function({ commit }) {
+      commit('setLoadingState')
+    }
+  }
+}
+
 const searchState = {
   state: {
     query: "",
@@ -35,15 +57,15 @@ const searchState = {
 
   actions: {
     LOAD_SEARCH_RESULTS: function ({ commit, rootState }) {
-      axios.get(apiUrl + 'search?cover=1&info=1&q=' +rootState.route.query.q, {
+      axios.get(apiUrl + 'search?cover=1&info=1&q=' + rootState.route.query.q, {
          headers: apiHeaders}
       ).then(
-        (response) => { 
-          commit('setSearchResults', {result: response.data}) 
+        (response) => {
+          commit('setSearchResults', {result: response.data})
         })
       .catch(
-        (err) => { 
-          console.log(err); 
+        (err) => {
+          console.log(err);
       });
     },
     LOAD_GENRES: function({commit}) {
@@ -55,7 +77,7 @@ const searchState = {
         })
     },
     LOAD_MANGA_GENRE_LIST: function({commit, rootState}) {
-      axios.get(apiUrl+'search/genres/'+rootState.route.params.genreName, {
+      axios.get(apiUrl +'search/genres/'+ rootState.route.params.genreName, {
         headers: apiHeaders, params: { cover: 1, info: 1 }
       }).then(
         (response) => {
@@ -89,7 +111,7 @@ const mangaState = {
   },
   actions: {
     LOAD_MANGA_INFO: function({ commit, rootState }) {
-      axios.get(apiUrl+ 'manga/' +rootState.route.params.mangaId, 
+      axios.get(apiUrl+ 'manga/' + rootState.route.params.mangaId,
       { headers: apiHeaders }
       ).then((response) => {
         commit('setManga', {result: response.data})
@@ -99,7 +121,7 @@ const mangaState = {
       });
     },
     LOAD_MANGA_CHAPTER: function({commit, rootState}) {
-      axios.get(apiUrl+'manga/'+ rootState.route.params.mangaId +"/"+rootState.route.params.chapterId, 
+      axios.get(apiUrl+'manga/'+ rootState.route.params.mangaId +"/"+ rootState.route.params.chapterId,
         {headers: apiHeaders}
       ).then((response) => {
         commit('setChapter', {chapter: response.data})
@@ -119,7 +141,8 @@ const mangaState = {
 const store = new Vuex.Store({
   modules: {
     search: searchState,
-    manga: mangaState
+    manga: mangaState,
+    globals: globalState
   }
 })
 
