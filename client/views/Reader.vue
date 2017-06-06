@@ -1,17 +1,34 @@
 <template>
 <div>
-	<div class="columns">
-		<div class="column is-8 is-offset-2">
-			<nav class="pagination is-centered">
-				<router-link class="pagination-next" :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: params.chapterId, page: nextPage }}">Next</router-link>
-				<div class="pagination-list" v-show="currentChapter">Chapter {{ params.chapterId }} / <template v-if="currentChapter.name">{{ currentChapter.name }} /</template> Page {{ params.page }} of {{ currentChapter.pages.length }}</div>
-				<router-link class="pagination-previous" :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: params.chapterId, page: prevPage }}">Previous</router-link>
-			</nav>
+	<div class="columns" v-on:keyup.left="prevPageLink" v-on:keyup.right="nextPageLink" tabindex="-1">
+		<div class="column is-12-mobile is-6-tablet is-offset-3-tablet" style="position: fixed; bottom: 10px; z-index: 99; left: -4px;">
+			<div class="card">
+			  <div class="card-content">
+					<nav class="is-hidden-tablet pagination is-centered">
+						<a @click="prevPageLink" class="pagination-previous"><<</a>
+						<div class="pagination-list" v-if="currentChapter && currentChapter.pages.length">
+							Ch. {{ params.chapterId }} /
+							{{ params.page }}
+							of {{ totalPage }}
+						</div>
+						<a @click="nextPageLink" class="pagination-next">>></a>
+					</nav>
+					<nav class="is-hidden-mobile pagination is-centered">
+						<a @click="nextPageLink" class="pagination-next">Next</a>
+						<div class="pagination-list" v-if="currentChapter && currentChapter.pages.length">
+							Chapter {{ params.chapterId }} /
+							Page {{ params.page }}
+							of {{ totalPage }}
+						</div>
+						<a @click="prevPageLink" class="pagination-previous">Previous</a>
+					</nav>
+			  </div>
+			</div>
 		</div>
 	</div>
-	<div class="columns" v-show="currentChapter">
+	<div class="columns" v-if="currentChapter">
 		<div class="column is-two-thirds is-offset-2">
-			<figure class="image">
+			<figure class="image" style="border:1px solid #000;">
 				<img v-bind:src="currentPage.url" />
 			</figure>
 		</div>
@@ -26,11 +43,14 @@ export default {
 	mounted() {
 		this.$store.dispatch('LOAD_MANGA_CHAPTER')
 	},
-	/**watch: {
+	watch: {
 		'$route' (to, from) {
+			if (to.params.chapterId !== from.params.chapterId && to.params.mangaId !== from.params.mangaId) {
+				this.$store.commit('resetReader', [])
+			}
 			this.$store.dispatch('LOAD_MANGA_CHAPTER')
 		}
-	},**/
+	},
 	computed: {
 		currentPage() {
 			const pageId = this.$store.state.route.params.page
@@ -55,6 +75,21 @@ export default {
 			} else {
 				return this.params.page
 			}
+		},
+		totalPage() {
+			if (this.currentChapter !== []) {
+				return this.currentChapter.pages.length
+			} else {
+				return 1
+			}
+		}
+	},
+	methods: {
+		nextPageLink() {
+			this.$router.push({name: 'reader', params: { mangaId: this.params.mangaId, chapterId: this.params.chapterId, page: this.nextPage }})
+		},
+		prevPageLink() {
+			this.$router.push({name: 'reader', params: { mangaId: this.params.mangaId, chapterId: this.params.chapterId, page: this.prevPage }})
 		}
 	}
 }
