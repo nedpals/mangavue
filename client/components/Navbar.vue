@@ -1,16 +1,26 @@
 <template>
-	<nav class="nav has-shadow">
+	<nav class="nav has-shadow" style="position:fixed;top:0;left:0;right:0;">
 		<div class="nav-left">
 			<router-link :to="{ name: 'home' }" class="nav-item">
 				MANGAVUE
 			</router-link>
 		</div>
-	    <span class="nav-toggle">
-	      <span></span>
-	      <span></span>
-	      <span></span>
-	    </span>
-	    <div class="nav-center" v-if="this.$route.name !== 'home'">
+
+		<label class="nav-toggle" for="search-toggle-state">
+				<i class="fa fa-search" style="margin-top:13px"></i>
+		</label>
+
+		<input type="checkbox" id="search-toggle-state" />
+
+		<label class="nav-toggle" for="nav-toggle-state">
+			<span></span>
+			<span></span>
+			<span></span>
+		</label>
+
+		<input type="checkbox" id="nav-toggle-state" />
+
+	    <div class="nav-center search-box" v-if="this.$route.name !== 'home'">
 	    	<div class="nav-item">
 		    	<template v-if="this.$route.name == 'search'">
 		      		<search-box v-bind:value="sQuery"></search-box>
@@ -43,6 +53,34 @@
 <style>
 nav > .wrapper.container {
 	margin-bottom: 20px !important;
+}
+
+.search-box {
+	display: flex;
+}
+
+
+#nav-toggle-state,
+#search-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .nav-menu,
+#search-toggle-state:checked ~ .search-box {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+	.nav-center.search-box {
+		background-color: white;
+		box-shadow: 0 4px 7px rgba(10, 10, 10, 0.1);
+		display: none;
+		left: 0;
+		display: none;
+		right: 0;
+		top: 100%;
+		position: absolute;
+	}
 }
 </style>
 

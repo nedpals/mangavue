@@ -1,5 +1,6 @@
 <template>
-	<div>
+<div>
+	<section class="search-page">
 		<section class="hero is-primary is-bold">
 		  <div class="hero-body">
 		    <div class="container">
@@ -9,23 +10,29 @@
 		    </div>
 		  </div>
 		</section>
-		<div class="container">
-			<div class="columns" v-for="item in results">
-				<div class="column is-2">
-					<figure class="image">
-						<img v-bind:src="item.cover" />
-					</figure>
-				</div>
-				<div class="column is-8">
-					<p class="title is-3"><router-link :to="{name: 'manga', params: { mangaId: item.mangaId }}"> {{ item.name }} </router-link></p>
-					<p v-if="item.info" v-html="item.info"></p>
-					<ul class="tags">
-						<li v-for="g in item.genres"><router-link :to="{name: 'genre', params: { genreName: g }}"><span class="tag is-info">{{ g }}</span></router-link></li>
-					</ul>
+		<div class="columns is-block-tablet" style="padding:1.5rem">
+			<div class="column is-12" v-for="item in results">
+				<div class="columns is-mobile">
+					<div class="column is-5-mobile is-2-tablet">
+						<figure class="image">
+							<img v-bind:src="item.cover" />
+						</figure>
+					</div>
+					<div class="column is-7-mobile is-6-tablet">
+						<p class="title is-5 is-hidden-tablet"><router-link :to="{name: 'manga', params: { mangaId: item.mangaId }}"> {{ item.name }} </router-link></p>
+						<div class="is-hidden-mobile">
+							<p class="title is-5-mobile is-3"><router-link :to="{name: 'manga', params: { mangaId: item.mangaId }}"> {{ item.name }} </router-link></p>
+							<p v-if="item.info" v-html="item.info"></p>
+						</div>
+						<ul class="tags">
+							<li v-for="g in item.genres"><router-link :to="{name: 'genre', params: { genreName: g }}"><span class="tag is-info">{{ g }}</span></router-link></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+</div>
 </template>
 
 <script>
@@ -68,6 +75,9 @@ export default {
 </script>
 
 <style>
+.search-page, .genre-page {
+	margin-top: -3.3rem !important;
+}
 .container {
 	margin-top: 30px !important;
 }

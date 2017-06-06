@@ -32,6 +32,12 @@
 </script>
 <style>
 .control input[type="text"].is-medium {
-	width: 40rem;
+	width: 120%;
+}
+
+@media screen and (max-width: 768px) {
+	.control input[type="text"].is-medium {
+		width: 100%;
+	}
 }
 </style>

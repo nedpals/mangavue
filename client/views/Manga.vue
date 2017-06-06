@@ -1,29 +1,40 @@
 <template>
-<div>
-	<div class="columns" v-show="manga">
-		<div class="column is-2">
+<div v-if="manga" style="padding:1rem;">
+	<div class="columns is-mobile">
+		<div class="column is-4-mobile is-2-tablet">
 			<figure class="image">
 				<img v-bind:src="manga.cover" />
 			</figure>
 		</div>
 		<div class="column is-8">
-			<h1 class="title is-1">{{ manga.name }}</h1>
+			<h1 class="is-hidden-mobile title is-1">{{ manga.name }}</h1>
+			<h1 class="is-hidden-tablet title is-3">{{ manga.name }}</h1>
 			<p class="subtitle">by
 			<template v-for="author in manga.author">
 			 {{ nameify(author) }}
 			</template>
 			| year: {{ manga.yearOfRelease }} | {{ manga.status }}</p>
-			<p v-html="manga.info"></p>
+			<p class="is-hidden-mobile" v-html="manga.info"></p>
+		</div>
+	</div>
+	<div class="columns">
+		<div class="column is-12">
+			<p class="is-hidden-tablet" v-html="manga.info"></p>
 			<br>
 			<aside class="menu">
-			  <p class="menu-label">
-			    Chapters
-			  </p>
-			  <ul class="menu-list" style="overflow-y: scroll; max-height: 28rem;">
-			    <li v-for="chapter in manga.chapters">
-			    	<router-link :to="{name: 'reader', params: { mangaId: manga.href, chapterId: chapter.chapterId, page: 1 }}">Chapter {{ chapter.chapterId }}: {{ chapter.name }}</router-link>
-			    </li>
-			  </ul>
+				<p class="menu-label">
+					Chapters
+				</p>
+				<ul class="menu-list" style="overflow-y: scroll; max-height: 35vh;">
+					<li v-for="chapter in manga.chapters">
+						<router-link :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: chapter.chapterId, page: 1 }}">
+							Chapter {{ chapter.chapterId }}
+							<template v-if="chapter.name">:
+								{{ chapter.name }}
+							</template>
+						</router-link>
+					</li>
+				</ul>
 			</aside>
 		</div>
 	</div>
@@ -47,7 +58,8 @@ export default {
 	},
 	computed: {
 		...mapState({
-			manga: state => state.manga.info
+			manga: state => state.manga.info,
+			params: state => state.route.params
 		})
 	},
 	methods: {

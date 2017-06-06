@@ -10,7 +10,8 @@
 <style src="../../static/assets/scss/font-awesome.scss" lang="sass"></style>
 <style>
 body {
-  margin-bottom: 3rem;
+  margin-bottom: 5rem !important;
+  margin-top: 5rem !important;
 }
 </style>
 <script>
