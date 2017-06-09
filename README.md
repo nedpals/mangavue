@@ -1,5 +1,5 @@
 # mangavue
-Manga reader powered by the whole Vuejs ecosystem (Vuex-Vue-router-Vuejs)
+A simple manga reader powered by the whole Vuejs ecosystem (Vuex-Vue-router-Vuejs)
 API: https://market.mashape.com/doodle/manga-scraper
 
 To start:
