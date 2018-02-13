@@ -5,7 +5,7 @@
 			<div class="card">
 			  <div class="card-content">
 					<nav class="is-hidden-tablet pagination is-centered">
-						<a @click="prevPageLink" class="pagination-previous"><<</a>
+						<a @click="prevPageLink" class="pagination-previous"> {{ "<<" }} </a>
 						<div class="pagination-list" v-if="currentChapter && currentChapter.pages.length">
 							Ch. {{ params.chapterId }} /
 							{{ params.page }}

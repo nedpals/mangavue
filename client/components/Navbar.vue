@@ -24,6 +24,8 @@
         </div>
       </div>
       <div class="navbar-end">
+        <!-- Place this tag where you want the button to render. -->
+        <a class="navbar-item github-button" href="https://github.com/nedpals/mangavue" data-size="large" data-show-count="true" aria-label="Star nedpals/mangavue on GitHub">Star</a>
         <a href="https://vuejs.org" class="navbar-item is-tab">
           Vue.js
         </a>
