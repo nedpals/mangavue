@@ -7,16 +7,15 @@
     </keep-alive>
   </div>
 </template>
-<style src="../../static/assets/scss/font-awesome.scss" lang="sass"></style>
+<style src="../../static/assets/scss/font-awesome.scss" lang="scss"></style>
+<style src="bulma/bulma.sass" lang="sass"></style>
 <style>
 body {
   margin-bottom: 5rem !important;
-  margin-top: 5rem !important;
 }
 </style>
 <script>
   import Navbar from './Navbar'
-  import '../../static/assets/bulma.css'
 
   export default {
     components: {
