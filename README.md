@@ -3,7 +3,9 @@ A simple manga reader powered by the whole Vuejs ecosystem (Vuex-Vue-router-Vuej
 
 API Used: https://market.mashape.com/doodle/manga-scraper
 
-> This is a mirrored repo. The original repository is located at: [https://gitlab.com/nedpals/mangavue](https://gitlab.com/nedpals/mangavue)
+> ~~This is a mirrored repo. The original repository is located at: [https://gitlab.com/nedpals/mangavue](https://gitlab.com/nedpals/mangavue)~~
+
+This is now the main repository.
 
 To start:
 
