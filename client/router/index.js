@@ -9,7 +9,7 @@ import Genre from '../views/Genre'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -33,14 +33,16 @@ export default new Router({
     },
     {
       path: '/manga/:mangaId',
-      component: Manga,
-      name: 'manga',
+      components: {
+        wide: Manga
+      },
+      name: 'manga'
     },
     {
-  		path: '/manga/:mangaId/read/:chapterId/:page',
-  		component: Reader,
+      path: '/manga/:mangaId/read/:chapterId/:page',
+      component: Reader,
       props: true,
-  		name: 'reader'
-  	}
+      name: 'reader'
+    }
   ]
 })
