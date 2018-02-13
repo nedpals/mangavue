@@ -2,10 +2,10 @@
 <form method="POST" v-on:submit="onSubmitForm">
 	<div class="field has-addons">
 		<p class="control has-icons-right">
-			<input type="text" :value="value" @input="updateValue" class="input is-medium" placeholder="Search here">
+			<input type="text" :value="value" @input="updateValue" class="input" placeholder="Search here">
 		</p>
 		<p class="control">
-			<button v:bind-class="{ 'is-loading':isLoading }" class="button is-primary is-medium" style="padding-left:2rem;padding-right:2rem;">
+			<button v:bind-class="{ 'is-loading':isLoading }" class="button is-primary" style="padding-left:2rem;padding-right:2rem;">
 				<span class="icon">
 					<i class="fa fa-search"></i>
 				</span>
