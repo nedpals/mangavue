@@ -1,17 +1,21 @@
 <template>
 <div>
-	<section class="genre-page">
-			<section class="hero is-primary is-bold">
-			  <div class="hero-body">
-			    <div class="container">
-			      <h1 class="title">
-			        Search results for: {{ nameify(genreName) }}
-			      </h1>
-			    </div>
-			  </div>
-			</section>
-			<manga-list :items="results"></manga-list>
-	</section>
+  <div class="columns">
+    <div class="column">
+      <section class="genre-page">
+          <section class="hero is-primary is-bold">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Genre: {{ genreNameProper }}
+                </h1>
+              </div>
+            </div>
+          </section>
+          <manga-list :items="results"></manga-list>
+      </section>
+    </div>
+  </div>
 </div>
 </template>
 <script>
