@@ -3,7 +3,7 @@
 		<div class="navbar-brand">
 			<router-link v-if="this.$route.name !== 'home'" :to="{ name: 'home' }" class="navbar-item">
 				<img src="../../static/mascot.png"/>
-        <span style="margin-left:1rem;">MANGAVUE</span>
+        <span class="is-hidden-touch" style="margin-left:1rem;">MANGAVUE</span>
 			</router-link>
 
       <button class="button navbar-burger" @click="showNav = !showNav" :class="{ 'is-active' : showNav }">
