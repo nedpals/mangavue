@@ -9,38 +9,49 @@
           </figure>
         </div>
         <div class="column is-6">
-          <h1 class="is-hidden-mobile title is-1">{{ manga.name }}</h1>
-          <h1 class="is-hidden-tablet title is-3">{{ manga.name }}</h1>
-          <div class="columns">
-            <div class="column">
-              <span class="title is-5">author</span>
-              <br>
-              <span class="subtitle is-5">
-                <template v-for="author in manga.author">
-                {{ nameify(author) }}
-                </template>
-              </span>
-            </div>
-            <div class="column">
-              <span class="title is-5">released</span>
-              <br>
-              <span class="subtitle is-5">{{ manga.yearOfRelease }}</span>
-            </div>
-            <div class="column">
-              <span class="title is-5">status</span>
-              <br>
-              <span class="subtitle is-5">
-                {{ manga.status }}
-              </span>
+          <div class="manga-info">
+            <h1 class="is-hidden-mobile title is-1">{{ manga.name }}</h1>
+            <h1 class="is-hidden-tablet title is-3">{{ manga.name }}</h1>
+            <div class="columns">
+              <div class="column">
+                <span class="title is-5">author</span>
+                <br>
+                <span class="subtitle is-5">
+                  <template v-for="author in manga.author">
+                  {{ nameify(author) }}
+                  </template>
+                </span>
+              </div>
+              <div class="column">
+                <span class="title is-5">released</span>
+                <br>
+                <span class="subtitle is-5">{{ manga.yearOfRelease }}</span>
+              </div>
+              <div class="column">
+                <span class="title is-5">status</span>
+                <br>
+                <span class="subtitle is-5">
+                  {{ manga.status }}
+                </span>
+              </div>
             </div>
           </div>
-           <p class="is-hidden-mobile" v-html="manga.info"></p>
+          <div class="columns read-now-section">
+            <div class="column is-12">
+              <router-link class="button is-primary is-large" :to="{name: 'reader', params: { mangaId: params.mangaId, chapterId: manga.chapters[0].chapterId, page: 1 }}">
+                Read now
+              </router-link>
+            </div>
+          </div>
+          <div class="manga-info-description">
+             <p class="is-hidden-mobile" v-html="manga.info"></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 	<div class="columns">
-		<div class="column is-12">
+		<div class="column is-6-desktop is-12-touch">
 			<p class="is-hidden-tablet" v-html="manga.info"></p>
 			<br>
 			<aside class="menu">
