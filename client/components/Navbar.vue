@@ -47,6 +47,10 @@
 </template>
 
 <style>
+html.has-navbar-fixed-top {
+  padding-top: 4rem !important;
+}
+
 .transparent-bg {
   background: transparent;
 }
@@ -111,7 +115,6 @@ export default {
       if (!this.isHome) {
         const root = document.getElementsByTagName('html')[0]
         root.setAttribute('class', 'has-navbar-fixed-top')
-        document.getElementsByTagName('body')[0].setAttribute('class', 'has-navbar-fixed-top')
       }
     }
   }
