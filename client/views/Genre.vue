@@ -29,18 +29,25 @@ export default {
 	computed: {
 		...mapState({
 			results: state => state.search.genreList,
-			genreName: state => state.route.params.genreName
-		})
+			genreName: state => state.route.params.genreName,
+      genres: state => state.search.genres
+		}),
+    genreNameProper() {
+      var str = this.genreName.replace(/-/g, " ");
+       var splitStr = str.toLowerCase().split(' ');
+       for (var i = 0; i < splitStr.length; i++) {
+           splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+       }
+      return splitStr.join(' ');
+    }
 	},
 	methods: {
 		nameify(str) {
-		   str = str.replace(/-/g, " ");
-		   var splitStr = str.toLowerCase().split(' ');
-		   for (var i = 0; i < splitStr.length; i++) {
-		       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-		   }
-		   return splitStr.join(' ');
-		}
+
+		},
+    checkGenre(id) {
+      return this.$route.params.genreName === id
+    }
   },
   components: {
     MangaList
